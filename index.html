@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="./style.css>"
+  <title>Tatum Booysen — Portfolio</title>
+  <style>
+    :root {
+      --text: rgb(86, 84, 84);
+      --text-muted: rgb(82, 78, 78);
+      --link: blue;
+      --link-hover: blue;
+      --bg: white;
+      --surface: rgb(217, 245, 243);
+      --border: rgb(247, 247, 252);
+    }
+ 
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+ 
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background-color: var(--bg);
+      max-width: 1200px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+ 
+    a { color: var(--link); text-decoration: none; }
+ 
+    /* ── NAVBAR ── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 50px;
+      height: 76px;
+      position: sticky;
+      top: 0;
+      background: rgba(245,244,240,0.88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+ 
+    nav .left a {
+      color: var(--text);
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+ 
+    nav .right { display: flex; align-items: center; gap: 6px; }
+ 
+    nav .right a {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 6px;
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 500;
+      transition: background 0.18s, color 0.18s;
+    }
+ 
+    nav .right a:hover { background: var(--surface); color: var(--link); }
+ 
+    nav .right a:last-child { background: var(--text); color: #fff; border-radius: 6px; }
+    nav .right a:last-child:hover { background: #333; color: #fff; }
+ 
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+ 
+    /* ── HERO ── */
+    .hero-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 90px 50px 100px;
+      gap: 50px;
+    }
+ 
+    .hero-section .text { flex: 5; }
+ 
+    .hero-section .text .eyebrow {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--link);
+      background: #dbeafe;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 18px;
+    }
+ 
+    .hero-section .text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 54px;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 18px;
+      letter-spacing: -1px;
+    }
+ 
+    .hero-section .text p {
+      font-size: 17px;
+      color: var(--text-muted);
+      max-width: 500px;
+      margin-bottom: 32px;
+    }
+ 
+    .hero-section .links { display: flex; flex-wrap: wrap; gap: 10px; }
+ 
+    .hero-section .links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 18px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      background: var(--surface);
+      transition: border-color 0.18s, background 0.18s, color 0.18s, transform 0.18s;
+      box-shadow: 0 1px 3px rgba(0,0,0,.06);
+    }
+ 
+    .hero-section .links a:hover {
+      border-color: var(--link);
+      background: #dbeafe;
+      color: var(--link);
+      transform: translateY(-2px);
+    }
+ 
+    .hero-section .headshot { flex: 2; display: flex; justify-content: flex-end; }
+ 
+    .hero-section .headshot img {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--surface);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+      transition: transform 0.4s ease;
+    }
+ 
+    .hero-section .headshot img:hover { transform: scale(1.03); }
+ 
+    /* ── SECTION HEADING ── */
+    .section-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+ 
+    .section-header .icon-circle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      background: #dbeafe;
+      border-radius: 50%;
+      margin-bottom: 14px;
+      font-size: 22px;
+      color: var(--link);
+    }
+ 
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+ 
+    .section-header p { color: var(--text-muted); font-size: 16px; }
+ 
+    /* ── SKILLS ── */
+    .skills-section {
+      padding: 80px 50px;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+ 
+    .skills-section .cells {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+ 
+    .skills-section .cells .cell {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 22px;
+      cursor: default;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s;
+    }
+ 
+    .skills-section .cells .cell:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(37,99,235,0.12);
+      border-color: #93c5fd;
+    }
+ 
+    .skills-section .cells .cell i { font-size: 30px; }
+    .skills-section .cells .cell span { font-size: 15px; font-weight: 500; }
+ 
+    /* ── ABOUT ── */
+    .about-section {
+      padding: 90px 50px;
+    }
+ 
+    .about-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+ 
+    .about-section .section-header { margin-bottom: 28px; }
+ 
+    .about-section p {
+      font-size: 17px;
+      color: var(--text-muted);
+      line-height: 1.85;
+      margin-bottom: 40px;
+    }
+ 
+    /* About highlight cards */
+    .about-highlights {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+ 
+    .about-highlights .highlight {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px 28px;
+      min-width: 140px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+ 
+    .about-highlights .highlight:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.07);
+    }
+ 
+    .about-highlights .highlight i {
+      font-size: 26px;
+      color: var(--link);
+    }
+ 
+    .about-highlights .highlight span {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+ 
+    /* ── CONTACT ── */
+    .contact-section {
+      padding: 80px 50px 100px;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+    }
+ 
+    .contact-section .subtitle { color: var(--text-muted); margin-bottom: 40px; }
+ 
+    .contact-section .group { display: flex; gap: 60px; align-items: flex-start; }
+ 
+    .contact-section .group .text {
+      flex: 3;
+      padding-top: 6px;
+    }
+ 
+    /* Contact detail items */
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 24px;
+    }
+ 
+    .contact-details .detail {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+ 
+    .contact-details .detail .icon-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      background: #dbeafe;
+      border-radius: 8px;
+      color: var(--link);
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+ 
+    .contact-details .detail a {
+      color: var(--text-muted);
+      transition: color 0.18s;
+    }
+    .contact-details .detail a:hover { color: var(--link); }
+ 
+    .contact-section .group form {
+      flex: 4;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+ 
+    .contact-section label {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      display: block;
+    }
+ 
+    .contact-section input,
+    .contact-section textarea {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      width: 100%;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg);
+      padding: 11px 14px;
+      outline: none;
+      resize: none;
+      transition: border-color 0.18s, box-shadow 0.18s;
+      color: var(--text);
+    }
+ 
+    .contact-section input:focus,
+    .contact-section textarea:focus {
+      border-color: var(--link);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.12);
+    }
+ 
+    .contact-section button {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      background: var(--link);
+      border: none;
+      border-radius: 8px;
+      height: 48px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background 0.18s, transform 0.1s;
+    }
+ 
+    .contact-section button:hover { background: var(--link-hover); transform: translateY(-1px); }
+    .contact-section button:active { transform: translateY(0); }
+ 
+    /* ── FOOTER ── */
+    footer {
+      padding: 28px 50px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+ 
+    footer p { font-size: 13px; color: var(--text-muted); }
+ 
+    footer .social-links { display: flex; gap: 10px; }
+ 
+    footer .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 16px;
+      background: var(--surface);
+      transition: color 0.18s, border-color 0.18s, background 0.18s, transform 0.18s;
+    }
+ 
+    footer .social-links a:hover {
+      color: var(--link);
+      border-color: #93c5fd;
+      background: #dbeafe;
+      transform: translateY(-2px);
+    }
+ 
+    /* ── RESPONSIVE ── */
+    @media (max-width: 850px) {
+      .hero-section .text h1 { font-size: 42px; }
+    }
+ 
+    @media (max-width: 740px) {
+      .hero-section { flex-direction: column-reverse; padding: 60px 30px 80px; }
+      .hero-section .headshot img { width: 220px; height: 220px; }
+      .contact-section .group { flex-direction: column; }
+    }
+ 
+    @media (max-width: 600px) {
+      nav { padding: 0 20px; }
+      nav .right a span { display: none; }
+      nav .right a:last-child { background: transparent; color: var(--text); padding: 6px 10px; }
+      .hero-section { padding: 50px 20px 70px; }
+      .hero-section .text h1 { font-size: 34px; }
+      .skills-section { padding: 60px 20px; }
+      .about-section { padding: 60px 20px; }
+      .contact-section { padding: 60px 20px 80px; }
+      footer { padding: 24px 20px; flex-direction: column; align-items: center; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+ 
+  <!-- NAVBAR -->
+  <nav>
+    <div class="left">
+      <a href="/">Tatum Booysen</a>
+    </div>
+    <div class="right">
+      <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-github"></i>
+        <span>GitHub</span>
+      </a>
+      <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-linkedin"></i>
+        <span>LinkedIn</span>
+      </a>
+      <a href="mailto:tatumbooysen@gmail.com">
+        <i class="fa-solid fa-envelope"></i>
+        <span>Email</span>
+      </a>
+    </div>
+  </nav>
+ 
+  <main>
+ 
+    <!-- HERO -->
+    <section class="hero-section">
+      <div class="text reveal">
+        <span class="eyebrow">
+          <i class="fa-solid fa-circle-dot" style="margin-right: 5px; font-size: 10px;"></i>
+          Available for opportunities
+        </span>
+        <h1>Hi, I'm Tatum</h1>
+        <p>Junior Software Developer passionate about web development, Python programming, data analytics and building modern, user-friendly applications. Currently expanding my skills in JavaScript and full-stack development.</p>
+        <div class="links">
+          <a href="#skills">
+            <i class="fa-solid fa-code"></i>
+            <span>Skills</span>
+          </a>
+          <a href="#about">
+            <i class="fa-solid fa-user"></i>
+            <span>About Me</span>
+          </a>
+          <a href="#contact">
+            <i class="fa-solid fa-envelope"></i>
+            <span>Contact</span>
+          </a>
+        </div>
+      </div>
+      <div class="headshot reveal" style="transition-delay: 0.15s;">
+        <img src="https://i.postimg.cc/fRNpB7Kn/IMG-20231109-190350-989.jpg" alt="Tatum Booysen headshot">
+      </div>
+    </section>
+ 
+    <!-- SKILLS -->
+    <section id="skills" class="skills-section">
+      <div class="section-header reveal">
+        <div class="icon-circle">
+          <i class="fa-solid fa-laptop-code"></i>
+        </div>
+        <h2>Skills</h2>
+        <p>Technologies I work with and am actively learning</p>
+      </div>
+      <div class="cells">
+        <div class="cell reveal">
+          <i class="fa-brands fa-git-alt" style="color: orangered;"></i>
+          <span>Git</span>
+        </div>
+        <div class="cell reveal" style="transition-delay: 0.05s;">
+          <i class="fa-brands fa-github" style="color: darkslategrey"></i>
+          <span>GitHub</span>
+        </div>
+        <div class="cell reveal" style="transition-delay: 0.1s;">
+          <i class="fa-brands fa-react" style="color: lightskyblue"></i>
+          <span>React</span>
+        </div>
+        <div class="cell reveal" style="transition-delay: 0.15s;">
+          <i class="fa-brands fa-html5" style="color: orangered;"></i>
+          <span>HTML5</span>
+        </div>
+        <div class="cell reveal" style="transition-delay: 0.2s;">
+          <i class="fa-brands fa-css3-alt" style="color: blue;"></i>
+          <span>CSS</span>
+        </div>
+        <div class="cell reveal" style="transition-delay: 0.25s;">
+          <i class="fa-brands fa-js" style="color: yellow;"></i>
+          <span>JavaScript</span>
+        </div>
+        <div class="cell reveal" style="transition-delay: 0.3s;">
+          <i class="fa-brands fa-python" style="color: lightblue;"></i>
+          <span>Python</span>
+        </div>
+      </div>
+    </section>
+ 
+    <!-- ABOUT -->
+    <section id="about" class="about-section">
+      <div class="about-inner reveal">
+        <div class="section-header">
+          <div class="icon-circle">
+            <i class="fa-solid fa-user-tie"></i>
+          </div>
+          <h2>About Me</h2>
+        </div>
+        <p>
+          I'm an aspiring software developer from South Africa who enjoys building websites,
+          learning new technologies, and solving real problems through code. My current focus
+          is front-end development with HTML, CSS, JavaScript, and Python — with an eye toward
+          full-stack work as I grow my skill set.
+        </p>
+        <div class="about-highlights">
+          <div class="highlight">
+            <i class="fa-solid fa-map-marker-alt"></i>
+            <span>South Africa</span>
+          </div>
+          <div class="highlight">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span>Self-taught</span>
+          </div>
+          <div class="highlight">
+            <i class="fa-solid fa-rocket"></i>
+            <span>Full-stack</span>
+          </div>
+          <div class="highlight">
+            <i class="fa-solid fa-handshake"></i>
+            <span>Open to work</span>
+          </div>
+        </div>
+      </div>
+    </section>
+ 
+    <!-- CONTACT -->
+    <section id="contact" class="contact-section">
+      <div class="reveal">
+        <div class="section-header" style="text-align: left;">
+          <div class="icon-circle" style="display: inline-flex;">
+            <i class="fa-solid fa-paper-plane"></i>
+          </div>
+          <h2>Contact</h2>
+        </div>
+        <p class="subtitle">Have a project in mind? I'd love to hear from you.</p>
+        <div class="group">
+          <div class="text">
+            <p style="font-size: 16px; color: var(--text-muted); line-height: 1.8; margin-bottom: 0;">
+              I'm currently open to junior developer roles, freelance projects, and collaboration
+              opportunities. Whether you have a question or just want to say hello — my inbox is always open.
+            </p>
+            <div class="contact-details">
+              <div class="detail">
+                <div class="icon-wrap"><i class="fa-solid fa-envelope"></i></div>
+                <a href="mailto:tatumbooysen@gmail.com">tatumbooysen@gmail.com</a>
+              </div>
+              <div class="detail">
+                <div class="icon-wrap"><i class="fa-solid fa-map-marker-alt"></i></div>
+                <span>Cape Town, South Africa</span>
+              </div>
+              <div class="detail">
+                <div class="icon-wrap"><i class="fa-brands fa-linkedin"></i></div>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">linkedin.com/in/tatumbooysen</a>
+              </div>
+              <div class="detail">
+                <div class="icon-wrap"><i class="fa-brands fa-github"></i></div>
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer">github.com/tatumbooysen</a>
+              </div>
+            </div>
+          </div>
+          <form>
+            <div>
+              <label for="name">Name</label>
+              <input type="text" id="name" placeholder="Your name">
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="your@email.com">
+            </div>
+            <div>
+              <label for="message">Message</label>
+              <textarea id="message" placeholder="Your message..." cols="30" rows="6"></textarea>
+            </div>
+            <button type="submit">
+              <i class="fa-solid fa-paper-plane"></i>
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+ 
+  </main>
+ 
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2026 Tatum Booysen. All rights reserved.</p>
+    <div class="social-links">
+      <a href="https://github.com" target="_blank" rel="noopener noreferrer" title="GitHub">
+        <i class="fa-brands fa-github"></i>
+      </a>
+      <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+        <i class="fa-brands fa-linkedin"></i>
+      </a>
+      <a href="mailto:tatumbooysen@gmail.com" title="Email">
+        <i class="fa-solid fa-envelope"></i>
+      </a>
+    </div>
+  </footer>
+ 
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+ 
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+ 
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const btn = this.querySelector('button');
+      btn.innerHTML = '<i class="fa-solid fa-check"></i> Message Sent!';
+      btn.style.background = '#16a34a';
+      setTimeout(() => {
+        btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message';
+        btn.style.background = '';
+        this.reset();
+      }, 3000);
+    });
+  </script>
+ 
+</body>
+</html>
+ 
