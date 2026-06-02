@@ -5,7 +5,7 @@ A simple, responsive personal portfolio built with HTML, CSS, and a bit of JavaS
 
 ## Live Demo
 
-View the site here: https://YOUR-LIVE-LINK-HERE
+View the site here: https://tatumbooysen7-commits.github.io/Webpage_project.html-css/
 
 ## Features
 
@@ -27,7 +27,7 @@ View the site here: https://YOUR-LIVE-LINK-HERE
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/tatumbooysen/REPO-webpage_project.html-css.git
+   git clone https://github.com/tatumbooysen/webpage_project.html-css.git
    ```
 2. Open `index.html` in your browser.
 
